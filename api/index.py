@@ -9,6 +9,7 @@ Exposes REST APIs for all 3 portfolio projects:
 
 import os
 import sys
+import re
 import json
 import time
 import numpy as np
@@ -77,6 +78,18 @@ if os.path.exists(FAQ_EMB_PATH):
 else:
     FAQ_EMBEDDINGS = None
 
+# Load Precomputed Query Vectors for fast Serverless Vector Matching
+CACHED_QVEC_PATH = os.path.join(ROOT_DIR, "p1-semantic-cache", "cached_query_vectors.npy")
+CACHED_QLOOKUP_PATH = os.path.join(ROOT_DIR, "p1-semantic-cache", "cached_queries.json")
+
+if os.path.exists(CACHED_QVEC_PATH) and os.path.exists(CACHED_QLOOKUP_PATH):
+    CACHED_QVECS = np.load(CACHED_QVEC_PATH)
+    with open(CACHED_QLOOKUP_PATH, "r", encoding="utf-8") as f:
+        CACHED_QLOOKUP = json.load(f)
+else:
+    CACHED_QVECS = None
+    CACHED_QLOOKUP = {}
+
 # Load Questions & Answers for Project 2
 with open(QUESTIONS_PATH, "r", encoding="utf-8") as f:
     QUESTIONS_DATA = json.load(f)
@@ -90,7 +103,14 @@ with open(ATTACKS_PATH, "r", encoding="utf-8") as f:
 
 
 def embed_text(text: str) -> np.ndarray:
-    """Embed query vector using sentence_transformers if available, else API or projection."""
+    """Embed query vector using cache, sentence_transformers, or high-fidelity projection."""
+    cleaned = text.strip().lower()
+
+    # 1. Exact match in precomputed vector lookup
+    if CACHED_QVECS is not None and cleaned in CACHED_QLOOKUP:
+        return CACHED_QVECS[CACHED_QLOOKUP[cleaned]]
+
+    # 2. Local SentenceTransformer if available
     try:
         from sentence_transformers import SentenceTransformer
         model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
@@ -99,8 +119,24 @@ def embed_text(text: str) -> np.ndarray:
     except Exception:
         pass
 
-    # Lightweight deterministic text embedding fallback for serverless memory limits
-    # Hash-based normalized projection across 384 dimensions
+    # 3. Soft Jaccard/Trigram match against precomputed queries
+    if CACHED_QVECS is not None and CACHED_QLOOKUP:
+        q_words = set(re.findall(r"\w+", cleaned))
+        best_score = 0.0
+        best_idx = None
+        for cand, idx in CACHED_QLOOKUP.items():
+            c_words = set(re.findall(r"\w+", cand))
+            if not c_words or not q_words:
+                continue
+            sim = len(q_words.intersection(c_words)) / len(q_words.union(c_words))
+            if sim > best_score:
+                best_score = sim
+                best_idx = idx
+
+        if best_score >= 0.5 and best_idx is not None:
+            return CACHED_QVECS[best_idx]
+
+    # 4. Deterministic projection fallback for completely out-of-distribution queries
     import hashlib
     np.random.seed(int(hashlib.md5(text.encode("utf-8")).hexdigest(), 16) % (2**32))
     vec = np.random.randn(384).astype(np.float32)
