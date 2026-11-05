@@ -349,4 +349,9 @@ def catch_all(request: Request, full_path: str):
     # If root or index.html requested via catchall, serve UI
     if full_path in ("", "index.html", "public/index.html"):
         return serve_index()
-    raise HTTPException(status_code=404, detail=f"Endpoint '{full_path}' not found.")
+    # Debug header inspection
+    return {
+        "detail": f"Endpoint '{full_path}' not found.",
+        "headers": dict(request.headers),
+        "scope": {k: str(v) for k, v in request.scope.items() if k in ("path", "raw_path", "root_path", "query_string")},
+    }
