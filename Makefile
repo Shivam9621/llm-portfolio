@@ -1,7 +1,10 @@
-.PHONY: run run-p1 run-p2 run-p3 test install
+.PHONY: run run-p1 run-p2 run-p3 test install ui
 
 install:
 	pip install -r requirements.txt
+
+ui:
+	streamlit run app.py
 
 run: run-p1 run-p2 run-p3
 	@echo "=================================================="
