@@ -1,0 +1,100 @@
+{"question": "Order return karne ke liye kitne din ka time milta hai?", "expected_faq_id": "faq_01", "type": "paraphrase"}
+{"question": "Mera parcel kahan pahuncha hai track karna hai", "expected_faq_id": "faq_02", "type": "paraphrase"}
+{"question": "Kitne din me samaan mere ghar deliver ho jayega?", "expected_faq_id": "faq_03", "type": "paraphrase"}
+{"question": "Mera refund kab tak mere bank account me aayega?", "expected_faq_id": "faq_04", "type": "paraphrase"}
+{"question": "Kya main apna order dispatch hone se pehle cancel kar sakta hoon?", "expected_faq_id": "faq_05", "type": "paraphrase"}
+{"question": "Cash on delivery option available hai kya checkout pe?", "expected_faq_id": "faq_06", "type": "paraphrase"}
+{"question": "Delivery address galat ho gaya kaise change karein?", "expected_faq_id": "faq_07", "type": "paraphrase"}
+{"question": "Toota hua ya damage product mila hai ab kya karein?", "expected_faq_id": "faq_08", "type": "paraphrase"}
+{"question": "India ke bahar America ya UK me delivery karte ho kya?", "expected_faq_id": "faq_09", "type": "paraphrase"}
+{"question": "Discount coupon code kahan enter karna hota hai?", "expected_faq_id": "faq_10", "type": "paraphrase"}
+{"question": "Google Pay ya PhonePe UPI se payment kar sakte hain kya?", "expected_faq_id": "faq_11", "type": "paraphrase"}
+{"question": "T-shirt ka size chota aa gaya exchange ho jayega kya?", "expected_faq_id": "faq_12", "type": "paraphrase"}
+{"question": "Ghar se return pickup schedule kaise karein?", "expected_faq_id": "faq_13", "type": "paraphrase"}
+{"question": "Mera order bina bataye apne aap cancel kyu ho gaya?", "expected_faq_id": "faq_14", "type": "paraphrase"}
+{"question": "GST bill ya purchase invoice kaise download karein?", "expected_faq_id": "faq_15", "type": "paraphrase"}
+{"question": "Return karne par delivery fees wapas milegi kya?", "expected_faq_id": "faq_16", "type": "paraphrase"}
+{"question": "Apne reward points aur wallet balance kaise redeem karein?", "expected_faq_id": "faq_17", "type": "paraphrase"}
+{"question": "Laptop ya mobile pe brand warranty kitni milti hai?", "expected_faq_id": "faq_18", "type": "paraphrase"}
+{"question": "Agar courier wale ke aane par main ghar par na milu toh?", "expected_faq_id": "faq_19", "type": "paraphrase"}
+{"question": "Mere badle mera dost ya security guard parcel le sakta hai kya?", "expected_faq_id": "faq_20", "type": "paraphrase"}
+{"question": "Apna account permanently delete kaise karein?", "expected_faq_id": "faq_21", "type": "paraphrase"}
+{"question": "Bina interest wali no cost EMI available hai kya card pe?", "expected_faq_id": "faq_22", "type": "paraphrase"}
+{"question": "Order confirm hone ke baad kya koi item badal sakte hain?", "expected_faq_id": "faq_23", "type": "paraphrase"}
+{"question": "Customer care helpline ya support team se kaise baat karein?", "expected_faq_id": "faq_24", "type": "paraphrase"}
+{"question": "Bank se paise cut gaye lekin order confirm nahi hua dikha raha hai", "expected_faq_id": "faq_25", "type": "paraphrase"}
+{"question": "Grocery ya khane peene ka saman return kar sakte hain kya?", "expected_faq_id": "faq_26", "type": "paraphrase"}
+{"question": "Kya delivery ke liye specific evening time slot select kar sakte hain?", "expected_faq_id": "faq_27", "type": "paraphrase"}
+{"question": "Product ke liye rating aur customer review kaise likhein?", "expected_faq_id": "faq_28", "type": "paraphrase"}
+{"question": "Box deliver hua par usme ek product missing hai", "expected_faq_id": "faq_29", "type": "paraphrase"}
+{"question": "Gift card voucher kaise purchase aur redeem karein?", "expected_faq_id": "faq_30", "type": "paraphrase"}
+{"question": "Within how many days can I return a purchased item?", "expected_faq_id": "faq_01", "type": "paraphrase"}
+{"question": "Where is my package right now and when will it arrive?", "expected_faq_id": "faq_02", "type": "paraphrase"}
+{"question": "What is the standard delivery timeline for shipments?", "expected_faq_id": "faq_03", "type": "paraphrase"}
+{"question": "How long will it take for the refund to reflect in my bank?", "expected_faq_id": "faq_04", "type": "paraphrase"}
+{"question": "Can I revoke an order before it gets dispatched?", "expected_faq_id": "faq_05", "type": "paraphrase"}
+{"question": "Can I pay cash at the door when the package arrives?", "expected_faq_id": "faq_06", "type": "paraphrase"}
+{"question": "How do I update the delivery address for my current order?", "expected_faq_id": "faq_07", "type": "paraphrase"}
+{"question": "The item arrived damaged in shipment, how do I report it?", "expected_faq_id": "faq_08", "type": "paraphrase"}
+{"question": "Do you provide international shipping overseas?", "expected_faq_id": "faq_09", "type": "paraphrase"}
+{"question": "Where do I paste the discount promo voucher?", "expected_faq_id": "faq_10", "type": "paraphrase"}
+{"question": "Which payment methods and credit cards do you accept?", "expected_faq_id": "faq_11", "type": "paraphrase"}
+{"question": "Can I exchange my shoes for a larger size?", "expected_faq_id": "faq_12", "type": "paraphrase"}
+{"question": "How can I book a doorstep pickup for my return?", "expected_faq_id": "faq_13", "type": "paraphrase"}
+{"question": "Why was my purchase cancelled automatically by system?", "expected_faq_id": "faq_14", "type": "paraphrase"}
+{"question": "Where can I get a downloadable GST invoice for taxation?", "expected_faq_id": "faq_15", "type": "paraphrase"}
+{"question": "Are standard shipping and courier costs refundable upon return?", "expected_faq_id": "faq_16", "type": "paraphrase"}
+{"question": "How can I use my accumulated store credits on checkout?", "expected_faq_id": "faq_17", "type": "paraphrase"}
+{"question": "What warranty protection is provided on electronic gadgets?", "expected_faq_id": "faq_18", "type": "paraphrase"}
+{"question": "What happens if I am not available during delivery attempts?", "expected_faq_id": "faq_19", "type": "paraphrase"}
+{"question": "Can someone else at my house receive my order?", "expected_faq_id": "faq_20", "type": "paraphrase"}
+{"question": "How do I deactivate or delete my shopping account?", "expected_faq_id": "faq_21", "type": "paraphrase"}
+{"question": "Do you have zero interest EMI schemes on credit cards?", "expected_faq_id": "faq_22", "type": "paraphrase"}
+{"question": "Can I add another item to my already confirmed order?", "expected_faq_id": "faq_23", "type": "paraphrase"}
+{"question": "How do I contact customer support representatives?", "expected_faq_id": "faq_24", "type": "paraphrase"}
+{"question": "Money was deducted from my account but order failed", "expected_faq_id": "faq_25", "type": "paraphrase"}
+{"question": "Can perishable items or food groceries be returned?", "expected_faq_id": "faq_26", "type": "paraphrase"}
+{"question": "Is it possible to choose an exact morning or evening delivery slot?", "expected_faq_id": "faq_27", "type": "paraphrase"}
+{"question": "Where can I rate the product and post my feedback?", "expected_faq_id": "faq_28", "type": "paraphrase"}
+{"question": "One item is missing from the parcel I received today", "expected_faq_id": "faq_29", "type": "paraphrase"}
+{"question": "How do I redeem my 16 digit gift card voucher code?", "expected_faq_id": "faq_30", "type": "paraphrase"}
+{"question": "Who is the current CEO of Microsoft?", "expected_faq_id": "none", "type": "negative"}
+{"question": "Can I buy shares or equity of your company on the stock exchange?", "expected_faq_id": "none", "type": "negative"}
+{"question": "Write a python script to invert a binary search tree", "expected_faq_id": "none", "type": "negative"}
+{"question": "What is the weather forecast for New Delhi tomorrow?", "expected_faq_id": "none", "type": "negative"}
+{"question": "Are you currently hiring software engineers or data scientists?", "expected_faq_id": "none", "type": "negative"}
+{"question": "Can you write an essay about climate change?", "expected_faq_id": "none", "type": "negative"}
+{"question": "What is the traditional recipe for Hyderabadi biryani?", "expected_faq_id": "none", "type": "negative"}
+{"question": "I do not want to return my item, I really love it", "expected_faq_id": "none", "type": "negative"}
+{"question": "Please do not give me any refund, keep the payment", "expected_faq_id": "none", "type": "negative"}
+{"question": "Never track this order, I want complete privacy", "expected_faq_id": "none", "type": "negative"}
+{"question": "Can I sell my old used car on your portal?", "expected_faq_id": "none", "type": "negative"}
+{"question": "Who won the world cup cricket match yesterday?", "expected_faq_id": "none", "type": "negative"}
+{"question": "What is the capital city of Australia?", "expected_faq_id": "none", "type": "negative"}
+{"question": "Tell me a funny programming joke", "expected_faq_id": "none", "type": "negative"}
+{"question": "How do I bake a chocolate cake at home?", "expected_faq_id": "none", "type": "negative"}
+{"question": "Translate this paragraph into French language", "expected_faq_id": "none", "type": "negative"}
+{"question": "Explain the basics of quantum computing and qubits", "expected_faq_id": "none", "type": "negative"}
+{"question": "Can I rent a flat or house through your application?", "expected_faq_id": "none", "type": "negative"}
+{"question": "I want to apply for a delivery executive job in your company", "expected_faq_id": "none", "type": "negative"}
+{"question": "What was your company revenue and profit in 2024?", "expected_faq_id": "none", "type": "negative"}
+{"question": "Can I book international flight tickets here?", "expected_faq_id": "none", "type": "negative"}
+{"question": "How do I apply for an Indian passport renewal?", "expected_faq_id": "none", "type": "negative"}
+{"question": "Solve this equation: 345 multiplied by 89", "expected_faq_id": "none", "type": "negative"}
+{"question": "Can I adopt a rescue puppy from your website?", "expected_faq_id": "none", "type": "negative"}
+{"question": "Where can I stream the newest Marvel movie online?", "expected_faq_id": "none", "type": "negative"}
+{"question": "Recommend top five fiction books to read this year", "expected_faq_id": "none", "type": "negative"}
+{"question": "How to lose weight safely in two months?", "expected_faq_id": "none", "type": "negative"}
+{"question": "What is the speed of light in vacuum?", "expected_faq_id": "none", "type": "negative"}
+{"question": "What is the current live price of Ethereum and Bitcoin?", "expected_faq_id": "none", "type": "negative"}
+{"question": "How do I fix a dripping water faucet in my bathroom?", "expected_faq_id": "none", "type": "negative"}
+{"question": "Can I schedule an appointment with a dentist here?", "expected_faq_id": "none", "type": "negative"}
+{"question": "Is it raining in Bangalore right now?", "expected_faq_id": "none", "type": "negative"}
+{"question": "What is the difference between SQL and MongoDB?", "expected_faq_id": "none", "type": "negative"}
+{"question": "What is the philosophical meaning of life?", "expected_faq_id": "none", "type": "negative"}
+{"question": "I never requested an invoice so never send me any bill", "expected_faq_id": "none", "type": "negative"}
+{"question": "Please cancel my monthly gym membership subscription", "expected_faq_id": "none", "type": "negative"}
+{"question": "How do I renew my motor vehicle driving license?", "expected_faq_id": "none", "type": "negative"}
+{"question": "Can I book cinema tickets for tomorrow evening show?", "expected_faq_id": "none", "type": "negative"}
+{"question": "What is the total human population on Earth right now?", "expected_faq_id": "none", "type": "negative"}
+{"question": "Teach me the basic chords on an acoustic guitar", "expected_faq_id": "none", "type": "negative"}

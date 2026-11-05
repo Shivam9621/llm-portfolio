@@ -1,0 +1,152 @@
+[
+  {
+    "id": "faq_01",
+    "question": "What is your return policy?",
+    "answer": "You can return most items within 30 days of delivery for a full refund or replacement. Items must be in their original condition and packaging."
+  },
+  {
+    "id": "faq_02",
+    "question": "How do I track my order?",
+    "answer": "You can track your order by clicking on the tracking link sent to your email or SMS, or by visiting 'My Orders' section on our app or website."
+  },
+  {
+    "id": "faq_03",
+    "question": "How long does standard delivery take?",
+    "answer": "Standard delivery typically takes 3 to 5 business days depending on your location and pincode."
+  },
+  {
+    "id": "faq_04",
+    "question": "When will I get my refund?",
+    "answer": "Once the returned item is inspected at our warehouse, your refund will be processed within 5 to 7 business days to your original payment method."
+  },
+  {
+    "id": "faq_05",
+    "question": "Can I cancel my order after placing it?",
+    "answer": "You can cancel your order from the 'My Orders' section as long as it has not been packed or dispatched for shipping."
+  },
+  {
+    "id": "faq_06",
+    "question": "Is Cash on Delivery (COD) available?",
+    "answer": "Yes, Cash on Delivery is available for most products and delivery locations. An additional nominal convenience fee may apply on checkout."
+  },
+  {
+    "id": "faq_07",
+    "question": "How can I change my delivery address?",
+    "answer": "You can update your delivery address from 'My Orders' before the item is dispatched. Once dispatched, address changes are not permitted."
+  },
+  {
+    "id": "faq_08",
+    "question": "What should I do if I received a damaged or defective item?",
+    "answer": "Please report damaged or defective products within 48 hours of delivery via 'My Orders' with unboxing photos or video, and we will initiate an immediate replacement."
+  },
+  {
+    "id": "faq_09",
+    "question": "Do you ship internationally?",
+    "answer": "Currently, we only ship across India to serviceable postal codes. International shipping is not supported at this moment."
+  },
+  {
+    "id": "faq_10",
+    "question": "How can I apply a discount coupon code?",
+    "answer": "You can enter your promotional or discount coupon code in the 'Apply Coupon' field on the checkout page before completing payment."
+  },
+  {
+    "id": "faq_11",
+    "question": "What payment methods do you accept?",
+    "answer": "We accept Credit/Debit Cards (Visa, MasterCard, RuPay), UPI (Google Pay, PhonePe, Paytm), Net Banking, Wallets, and Cash on Delivery."
+  },
+  {
+    "id": "faq_12",
+    "question": "Can I exchange an item for a different size or color?",
+    "answer": "Yes, clothing and footwear items can be exchanged for a different size or color within 14 days of delivery, subject to stock availability."
+  },
+  {
+    "id": "faq_13",
+    "question": "How do I schedule a return pickup?",
+    "answer": "When initiating a return under 'My Orders', select 'Doorstep Pickup' and choose a convenient pickup date and time window."
+  },
+  {
+    "id": "faq_14",
+    "question": "Why was my order cancelled automatically?",
+    "answer": "Orders may be automatically cancelled due to failed payment verification, sudden out-of-stock inventory, or unserviceable address issues."
+  },
+  {
+    "id": "faq_15",
+    "question": "How can I get an invoice for my purchase?",
+    "answer": "You can download the GST tax invoice anytime from 'My Orders' by clicking 'Download Invoice' next to your completed order."
+  },
+  {
+    "id": "faq_16",
+    "question": "Are shipping charges refundable on return?",
+    "answer": "Standard delivery and express shipping fees are non-refundable unless the return is due to a damaged, defective, or incorrect product sent by us."
+  },
+  {
+    "id": "faq_17",
+    "question": "How do I redeem my store credits or loyalty points?",
+    "answer": "Your reward coins and store credits appear automatically at checkout. Simply check the 'Use Store Credit' box before paying."
+  },
+  {
+    "id": "faq_18",
+    "question": "What is your warranty policy for electronics?",
+    "answer": "All electronic products carry standard brand warranty ranging from 6 months to 2 years. Contact the authorized brand service center with your invoice."
+  },
+  {
+    "id": "faq_19",
+    "question": "What happens if I miss my delivery?",
+    "answer": "Our courier partner will attempt delivery up to 3 times before returning the package to the sender. You will receive an SMS before each attempt."
+  },
+  {
+    "id": "faq_20",
+    "question": "Can someone else receive my package on my behalf?",
+    "answer": "Yes, anyone at your delivery address can receive the package. For prepaid orders with an OTP, they will need to provide the delivery OTP sent to your phone."
+  },
+  {
+    "id": "faq_21",
+    "question": "How do I delete or deactivate my account?",
+    "answer": "Go to 'Account Settings' -> 'Privacy & Security' -> 'Request Account Deletion'. All your active orders must be completed prior to deletion."
+  },
+  {
+    "id": "faq_22",
+    "question": "Do you offer No-Cost EMI?",
+    "answer": "Yes, No-Cost EMI is available on select credit and debit cards for eligible orders above ₹3,000. Check the payment page for eligible banks."
+  },
+  {
+    "id": "faq_23",
+    "question": "Can I modify items in my order after placing it?",
+    "answer": "Items within a confirmed order cannot be modified. If you wish to change items, please cancel the existing order and place a new one."
+  },
+  {
+    "id": "faq_24",
+    "question": "How do I contact customer support?",
+    "answer": "You can reach our 24/7 customer support via the in-app chat, email at support@store.com, or toll-free at 1800-123-4567."
+  },
+  {
+    "id": "faq_25",
+    "question": "Why is my payment deducted but order not placed?",
+    "answer": "If money was deducted without an order confirmation, your bank will automatically reverse the transaction within 24 to 48 hours."
+  },
+  {
+    "id": "faq_26",
+    "question": "What is the return window for perishable or grocery items?",
+    "answer": "Fresh food, groceries, and personal hygiene items are non-returnable due to safety and health reasons, unless received spoiled or expired."
+  },
+  {
+    "id": "faq_27",
+    "question": "Can I choose a specific delivery time slot?",
+    "answer": "Time slot selection is available only for Grocery and Express Delivery orders in select metro cities at checkout."
+  },
+  {
+    "id": "faq_28",
+    "question": "How do I leave a product review?",
+    "answer": "Visit 'My Orders', find the delivered item, and tap 'Write a Review' to share your rating, feedback, and photos."
+  },
+  {
+    "id": "faq_29",
+    "question": "What if an item is missing from my package?",
+    "answer": "Sometimes items are shipped in separate packages. Check your order tracking for multiple tracking numbers, or contact support within 48 hours."
+  },
+  {
+    "id": "faq_30",
+    "question": "How do I buy or redeem a Gift Card?",
+    "answer": "Purchase gift cards from the 'Gift Cards' section. To redeem, enter the 16-digit card code and PIN in your wallet or on the checkout page."
+  }
+]

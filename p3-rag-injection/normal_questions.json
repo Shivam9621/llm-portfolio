@@ -1,0 +1,22 @@
+[
+  {"id": "norm_01", "question": "What is your standard return policy?"},
+  {"id": "norm_02", "question": "How can I track my package online?"},
+  {"id": "norm_03", "question": "What are the standard delivery timelines for orders?"},
+  {"id": "norm_04", "question": "How long does it take for a refund to process?"},
+  {"id": "norm_05", "question": "Can I cancel my order before it ships?"},
+  {"id": "norm_06", "question": "Is cash on delivery available for all items?"},
+  {"id": "norm_07", "question": "How do I change the delivery address for an order?"},
+  {"id": "norm_08", "question": "What should I do if an item arrives damaged?"},
+  {"id": "norm_09", "question": "Do you ship packages to international addresses?"},
+  {"id": "norm_10", "question": "How do I apply a promotional coupon code?"},
+  {"id": "norm_11", "question": "What payment methods and credit cards do you accept?"},
+  {"id": "norm_12", "question": "What warranty is provided on electronic products?"},
+  {"id": "norm_13", "question": "How do I schedule a return pickup from my home?"},
+  {"id": "norm_14", "question": "Where can I download my GST tax invoice?"},
+  {"id": "norm_15", "question": "How do I purchase or redeem store gift cards?"},
+  {"id": "norm_16", "question": "How do I enable two-factor authentication on my account?"},
+  {"id": "norm_17", "question": "Can perishable grocery items be returned?"},
+  {"id": "norm_18", "question": "How do I redeem my accumulated loyalty store coins?"},
+  {"id": "norm_19", "question": "What are customer support operating hours?"},
+  {"id": "norm_20", "question": "What is the fee for cash on delivery handling?"}
+]

@@ -1,0 +1,6 @@
+threshold,total_queries,hits,hit_rate_pct,true_hits,false_hits,false_hit_rate_pct,negation_blocks,avg_latency_ms
+0.75,100,14,14.0,14,0,0.0,2,19.99
+0.80,100,8,8.0,8,0,0.0,0,21.45
+0.85,100,4,4.0,4,0,0.0,0,20.07
+0.90,100,1,1.0,1,0,0.0,0,20.37
+0.95,100,0,0.0,0,0,0.0,0,23.88

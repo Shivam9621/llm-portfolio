@@ -1,0 +1,49 @@
+{
+  "dataset_size": 30,
+  "baseline": {
+    "agreed_count": 8,
+    "accuracy_pct": 26.67,
+    "cohens_kappa": 0.0
+  },
+  "debiased": {
+    "agreed_count": 11,
+    "accuracy_pct": 36.67,
+    "cohens_kappa": 0.088
+  },
+  "flipped_verdict_count": 25,
+  "top_flipped_examples": [
+    {
+      "question_id": "q01",
+      "question": "How does Python's Global Interpreter Lock (GIL) impact the performance of CPU-bound vs IO-bound multi-threaded programs?",
+      "human_winner": "A",
+      "baseline_winner": "B",
+      "debiased_winner": "TIE",
+      "order1_winner": "B",
+      "order2_winner": "A",
+      "reason_baseline": "Candidate 2 provided a more comprehensive and nuanced explanation.",
+      "reason_debiased": "Candidate 2 provides a more precise technical explanation of failure modes."
+    },
+    {
+      "question_id": "q02",
+      "question": "Explain the difference between Python's reference counting and its generational garbage collector. When does the cyclic GC kick in?",
+      "human_winner": "A",
+      "baseline_winner": "B",
+      "debiased_winner": "TIE",
+      "order1_winner": "B",
+      "order2_winner": "A",
+      "reason_baseline": "Candidate 2 provided a more comprehensive and nuanced explanation.",
+      "reason_debiased": "Candidate 2 provides a more precise technical explanation of failure modes."
+    },
+    {
+      "question_id": "q03",
+      "question": "What is the difference between concurrency and parallelism, and how does Python's asyncio module achieve concurrency on a single thread?",
+      "human_winner": "A",
+      "baseline_winner": "B",
+      "debiased_winner": "TIE",
+      "order1_winner": "B",
+      "order2_winner": "A",
+      "reason_baseline": "Candidate 2 provided a more comprehensive and nuanced explanation.",
+      "reason_debiased": "Candidate 2 provides a more precise technical explanation of failure modes."
+    }
+  ]
+}

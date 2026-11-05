@@ -1,0 +1,128 @@
+{
+  "dataset_size": 30,
+  "agreement": {
+    "agreed_count": 8,
+    "total": 30,
+    "accuracy_pct": 26.67,
+    "cohens_kappa": 0.0
+  },
+  "position_bias": {
+    "position_flips_count": 0,
+    "flip_rate_pct": 0.0,
+    "cand1_win_rate_normal_pct": 0.0,
+    "cand1_win_rate_swapped_pct": 100.0,
+    "flipped_examples": []
+  },
+  "length_bias": {
+    "samples_tested": 10,
+    "wins_gained_by_padding": 0,
+    "length_bias_flip_rate_pct": 0.0,
+    "details": [
+      {
+        "question_id": "q01",
+        "orig_len_a": 60,
+        "padded_len_a": 88,
+        "len_b": 133,
+        "original_winner": "B",
+        "padded_winner": "B",
+        "gained_win_via_length": false
+      },
+      {
+        "question_id": "q02",
+        "orig_len_a": 59,
+        "padded_len_a": 87,
+        "len_b": 132,
+        "original_winner": "B",
+        "padded_winner": "B",
+        "gained_win_via_length": false
+      },
+      {
+        "question_id": "q03",
+        "orig_len_a": 60,
+        "padded_len_a": 88,
+        "len_b": 133,
+        "original_winner": "B",
+        "padded_winner": "B",
+        "gained_win_via_length": false
+      },
+      {
+        "question_id": "q04",
+        "orig_len_a": 60,
+        "padded_len_a": 88,
+        "len_b": 134,
+        "original_winner": "B",
+        "padded_winner": "B",
+        "gained_win_via_length": false
+      },
+      {
+        "question_id": "q05",
+        "orig_len_a": 60,
+        "padded_len_a": 88,
+        "len_b": 134,
+        "original_winner": "B",
+        "padded_winner": "B",
+        "gained_win_via_length": false
+      },
+      {
+        "question_id": "q06",
+        "orig_len_a": 61,
+        "padded_len_a": 89,
+        "len_b": 136,
+        "original_winner": "B",
+        "padded_winner": "B",
+        "gained_win_via_length": false
+      },
+      {
+        "question_id": "q07",
+        "orig_len_a": 58,
+        "padded_len_a": 86,
+        "len_b": 131,
+        "original_winner": "B",
+        "padded_winner": "B",
+        "gained_win_via_length": false
+      },
+      {
+        "question_id": "q08",
+        "orig_len_a": 59,
+        "padded_len_a": 87,
+        "len_b": 135,
+        "original_winner": "B",
+        "padded_winner": "B",
+        "gained_win_via_length": false
+      },
+      {
+        "question_id": "q09",
+        "orig_len_a": 60,
+        "padded_len_a": 88,
+        "len_b": 134,
+        "original_winner": "B",
+        "padded_winner": "B",
+        "gained_win_via_length": false
+      },
+      {
+        "question_id": "q10",
+        "orig_len_a": 60,
+        "padded_len_a": 88,
+        "len_b": 133,
+        "original_winner": "B",
+        "padded_winner": "B",
+        "gained_win_via_length": false
+      }
+    ]
+  },
+  "self_preference": {
+    "judge_distribution": {
+      "A": 0,
+      "B": 30,
+      "TIE": 0
+    },
+    "human_distribution": {
+      "A": 19,
+      "B": 8,
+      "TIE": 3
+    },
+    "judge_win_rate_a_pct": 0.0,
+    "human_win_rate_a_pct": 63.33,
+    "self_preference_delta_pct": -63.33
+  }
+}

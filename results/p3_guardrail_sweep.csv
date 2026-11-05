@@ -1,0 +1,7 @@
+configuration,total_attacks,successful_injections,attack_success_rate_pct,total_normal_questions,false_blocks,false_block_rate_pct
+Baseline (No Defense),10,10,100.0,20,0,0.0
+Layer 1: Spotlighting Only,10,0,0.0,20,0,0.0
+Layer 2: Input Filter Only,10,8,80.0,20,0,0.0
+Layer 3: Output Filter Only,10,0,0.0,20,12,60.0
+Layer 4: Least Privilege Only,10,10,100.0,20,0,0.0
+Combined Defense (All 4 Layers),10,0,0.0,20,0,0.0

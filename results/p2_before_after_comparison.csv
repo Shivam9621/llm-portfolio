@@ -1,0 +1,31 @@
+id,question,human_winner,baseline_winner,debiased_winner,order1_winner,order2_winner
+q01,How does Python's Global Interpreter Lock (GIL) impact the performance of CPU-bound vs IO-bound multi-threaded programs?,A,B,TIE,B,A
+q02,Explain the difference between Python's reference counting and its generational garbage collector. When does the cyclic GC kick in?,A,B,TIE,B,A
+q03,"What is the difference between concurrency and parallelism, and how does Python's asyncio module achieve concurrency on a single thread?",A,B,TIE,B,A
+q04,"In relational databases, what is the difference between Read Committed and Repeatable Read isolation levels, and what anomalies does Repeatable Read prevent?",TIE,B,B,B,B
+q05,Why are B-Tree indexes preferred over Hash indexes for relational database columns that support range queries?,A,B,A,A,A
+q06,"What is a database deadlock, what are the necessary conditions for it to occur, and how can an application prevent or resolve deadlocks?",A,B,TIE,B,A
+q07,Explain the difference between optimistic concurrency control (OCC) and pessimistic locking (e.g. SELECT FOR UPDATE) in high-throughput database systems.,TIE,B,TIE,A,B
+q08,"What is connection pooling in backend applications, why is it necessary, and what happens when connection leaks occur?",A,B,A,A,A
+q09,"What is the difference between cache stampede (thundering herd), cache penetration, and cache breakdown, and how do you mitigate each?",B,B,TIE,B,A
+q10,Explain the Cache-Aside (Lazy Loading) pattern vs Write-Through caching. What are the consistency trade-offs of each?,A,B,TIE,A,B
+q11,"How does Redis achieve single-threaded high performance, and in what scenarios can a Redis command block the entire server?",A,B,TIE,B,A
+q12,"What is an idempotency key in REST APIs, why is it critical for payment processing, and how is it typically implemented on the backend?",A,B,TIE,B,A
+q13,What are the trade-offs between REST over HTTP/1.1 and gRPC over HTTP/2 for inter-service communication in microservices?,B,B,B,B,B
+q14,"Explain the difference between horizontal and vertical database sharding, and discuss the challenge of cross-shard joins.",A,B,A,A,A
+q15,"What is the CAP theorem, and why is it impossible for a distributed data store to simultaneously provide Consistency, Availability, and Partition Tolerance?",B,B,TIE,A,B
+q16,Explain how Python's generator functions and the `yield` statement work under the hood. How do they save memory compared to list comprehensions?,A,B,TIE,A,B
+q17,What is the difference between shallow copy and deep copy in Python? Give an example involving nested mutable collections.,A,B,B,B,B
+q18,"How do Python decorators work under the hood, and why is `functools.wraps` important when creating decorators?",A,B,TIE,B,A
+q19,Explain the method resolution order (MRO) and C3 linearization algorithm in Python multiple inheritance. How does `super()` resolve methods?,B,B,A,A,A
+q20,What is the difference between `__getattr__` and `__getattribute__` in Python? When would you use one over the other?,A,B,A,A,A
+q21,"What are Python context managers (`with` statement), and how do `__enter__` and `__exit__` handle exceptions raised inside the block?",A,B,TIE,B,A
+q22,Explain the difference between strong consistency and eventual consistency in distributed databases. Provide practical examples of each.,B,B,TIE,B,A
+q23,"What is the two-phase commit (2PC) protocol in distributed transactions, and what are its main failure modes and bottlenecks?",B,B,B,B,B
+q24,How do rate limiters work using Token Bucket vs Leaky Bucket algorithms? What are the key operational differences between them?,A,B,A,A,A
+q25,"What is the Outbox Pattern in microservices architectures, and what problem does it solve when publishing events to a message broker like Kafka?",B,B,A,A,A
+q26,"What is the difference between message delivery semantics: At-least-once, At-most-once, and Exactly-once? How is exactly-once processing achieved in practice?",A,B,TIE,B,A
+q27,Explain how database write-ahead logging (WAL) guarantees durability and crash recovery in systems like PostgreSQL.,A,B,A,A,A
+q28,"What is backpressure in streaming and asynchronous data pipelines, and what strategies exist to handle it when consumers lag behind producers?",TIE,B,A,A,A
+q29,"What is the difference between symmetric and asymmetric encryption, and how do they combine during a TLS handshake?",B,B,B,B,B
+q30,"Explain the difference between stateful and stateless authentication (e.g. Session Cookies vs JWTs), and discuss the challenge of JWT revocation.",A,B,A,A,A
