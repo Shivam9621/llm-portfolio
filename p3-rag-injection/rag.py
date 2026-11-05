@@ -16,8 +16,17 @@ import re
 import glob
 from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
-import faiss
-from sentence_transformers import SentenceTransformer
+import json
+
+try:
+    import faiss
+except ImportError:
+    faiss = None
+
+try:
+    from sentence_transformers import SentenceTransformer
+except ImportError:
+    SentenceTransformer = None
 
 # Ensure repo root is available for llm.py
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -73,20 +82,43 @@ class RAGBot:
         self.layer_output_filter = layer_output_filter
         self.layer_least_privilege = layer_least_privilege
 
-        self.model = SentenceTransformer(model_name)
-        self.index = faiss.IndexFlatIP(dimension)
+        self.model = SentenceTransformer(model_name) if SentenceTransformer is not None else None
+        self.index = faiss.IndexFlatIP(dimension) if faiss is not None else None
         self.chunks: List[Dict[str, Any]] = []
+        self.chunk_embeddings: Optional[np.ndarray] = None
 
         self.build_index()
 
     def _embed(self, text: str) -> np.ndarray:
-        vec = self.model.encode(text, convert_to_numpy=True, show_progress_bar=False)
-        vec = np.ascontiguousarray(vec, dtype=np.float32).reshape(1, -1)
-        faiss.normalize_L2(vec)
-        return vec
+        if self.model is not None:
+            vec = self.model.encode(text, convert_to_numpy=True, show_progress_bar=False)
+            vec = np.ascontiguousarray(vec, dtype=np.float32).reshape(1, -1)
+            if faiss is not None:
+                faiss.normalize_L2(vec)
+            else:
+                norm = np.linalg.norm(vec)
+                vec = vec / (norm + 1e-9)
+            return vec
+        # Fallback deterministic projection
+        import hashlib
+        np.random.seed(int(hashlib.md5(text.encode("utf-8")).hexdigest(), 16) % (2**32))
+        vec = np.random.randn(1, self.dimension).astype(np.float32)
+        norm = np.linalg.norm(vec)
+        return vec / (norm + 1e-9)
 
     def build_index(self):
         """Load clean and poisoned documents and index their chunks."""
+        precomputed_emb = os.path.join(SCRIPT_DIR, "chunk_embeddings.npy")
+        precomputed_chunks = os.path.join(SCRIPT_DIR, "chunks.json")
+
+        if os.path.exists(precomputed_emb) and os.path.exists(precomputed_chunks):
+            self.chunk_embeddings = np.load(precomputed_emb)
+            with open(precomputed_chunks, "r", encoding="utf-8") as f:
+                self.chunks = json.load(f)
+            if self.index is not None:
+                self.index.add(self.chunk_embeddings)
+            return
+
         files = []
         if os.path.exists(self.docs_dir):
             files.extend(glob.glob(os.path.join(self.docs_dir, "*.md")))
@@ -100,7 +132,6 @@ class RAGBot:
             with open(fpath, "r", encoding="utf-8") as f:
                 content = f.read()
 
-            # Split into paragraphs/sections
             sections = [s.strip() for s in content.split("\n\n") if s.strip()]
             for sec in sections:
                 raw_chunks.append({
@@ -112,29 +143,54 @@ class RAGBot:
         if not raw_chunks:
             return
 
-        texts = [c["text"] for c in raw_chunks]
-        vectors = self.model.encode(texts, convert_to_numpy=True, show_progress_bar=False)
-        vectors = np.ascontiguousarray(vectors, dtype=np.float32)
-        faiss.normalize_L2(vectors)
-
-        self.index.add(vectors)
         self.chunks = raw_chunks
+        if self.model is not None:
+            texts = [c["text"] for c in raw_chunks]
+            vectors = self.model.encode(texts, convert_to_numpy=True, show_progress_bar=False)
+            vectors = np.ascontiguousarray(vectors, dtype=np.float32)
+            if faiss is not None:
+                faiss.normalize_L2(vectors)
+                self.index.add(vectors)
+            self.chunk_embeddings = vectors
 
     def retrieve(self, query: str, top_k: int = 3) -> List[Dict[str, Any]]:
         """Retrieve top_k most similar document chunks."""
-        if self.index.ntotal == 0:
+        if not self.chunks:
             return []
 
-        q_vec = self._embed(query)
-        distances, indices = self.index.search(q_vec, top_k)
+        if self.index is not None and self.index.ntotal > 0:
+            q_vec = self._embed(query)
+            distances, indices = self.index.search(q_vec, top_k)
+            results = []
+            for dist, idx in zip(distances[0], indices[0]):
+                if 0 <= idx < len(self.chunks):
+                    chunk = dict(self.chunks[idx])
+                    chunk["score"] = float(dist)
+                    results.append(chunk)
+            return results
 
-        results = []
-        for dist, idx in zip(distances[0], indices[0]):
-            if idx >= 0 and idx < len(self.chunks):
-                chunk = dict(self.chunks[idx])
-                chunk["score"] = float(dist)
-                results.append(chunk)
-        return results
+        # Pure NumPy dot-product fallback if FAISS is not present
+        if self.chunk_embeddings is not None and len(self.chunk_embeddings) > 0:
+            q_vec = self._embed(query).reshape(-1)
+            scores = np.dot(self.chunk_embeddings, q_vec)
+            top_indices = np.argsort(scores)[::-1][:top_k]
+            results = []
+            for idx in top_indices:
+                if 0 <= idx < len(self.chunks):
+                    chunk = dict(self.chunks[idx])
+                    chunk["score"] = float(scores[idx])
+                    results.append(chunk)
+            return results
+
+        # Text overlap fallback
+        q_words = set(re.findall(r"\w+", query.lower()))
+        scored = []
+        for c in self.chunks:
+            c_words = set(re.findall(r"\w+", c["text"].lower()))
+            overlap = len(q_words.intersection(c_words))
+            scored.append((overlap, c))
+        scored.sort(key=lambda x: x[0], reverse=True)
+        return [dict(item[1], score=float(item[0])) for item in scored[:top_k]]
 
     def query(self, user_question: str) -> Dict[str, Any]:
         """Execute RAG pipeline with active defense layers."""

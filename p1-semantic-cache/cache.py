@@ -13,8 +13,16 @@ import json
 import time
 from typing import Any, Dict, List, Optional, Tuple, Set
 import numpy as np
-import faiss
-from sentence_transformers import SentenceTransformer
+
+try:
+    import faiss
+except ImportError:
+    faiss = None
+
+try:
+    from sentence_transformers import SentenceTransformer
+except ImportError:
+    SentenceTransformer = None
 
 # Negation words across English and Hindi/Hinglish
 NEGATION_WORDS: Set[str] = {
