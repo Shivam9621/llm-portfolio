@@ -13,7 +13,7 @@ import json
 import time
 import numpy as np
 from typing import Any, Dict, List, Optional
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -119,14 +119,17 @@ class P3QueryRequest(BaseModel):
 
 
 # -----------------------------------------------------------------------------
-# API ROUTES
+# API ROUTES (Using router to support both /path and /api/path on Vercel)
 # -----------------------------------------------------------------------------
-@app.get("/api/health")
+router = APIRouter()
+
+
+@router.get("/health")
 def health_check():
     return {"status": "ok", "platform": "Vercel Serverless", "timestamp": time.time()}
 
 
-@app.get("/api/stats")
+@router.get("/stats")
 def get_portfolio_stats():
     return {
         "project_1": {
@@ -157,7 +160,7 @@ def get_portfolio_stats():
     }
 
 
-@app.post("/api/p1/query")
+@router.post("/p1/query")
 def p1_query(req: P1QueryRequest):
     t0 = time.perf_counter()
     q = req.question.strip()
@@ -238,7 +241,7 @@ def p1_query(req: P1QueryRequest):
     }
 
 
-@app.get("/api/p2/questions")
+@router.get("/p2/questions")
 def p2_get_questions():
     return [
         {
@@ -251,7 +254,7 @@ def p2_get_questions():
     ]
 
 
-@app.post("/api/p2/judge")
+@router.post("/p2/judge")
 def p2_judge(req: P2JudgeRequest):
     if req.question_id not in ANSWERS_MAP:
         raise HTTPException(status_code=404, detail="Question ID not found.")
@@ -267,12 +270,12 @@ def p2_judge(req: P2JudgeRequest):
     return verdict
 
 
-@app.get("/api/p3/attacks")
+@router.get("/p3/attacks")
 def p3_get_attacks():
     return ATTACKS_DATA
 
 
-@app.post("/api/p3/query")
+@router.post("/p3/query")
 def p3_query(req: P3QueryRequest):
     # Determine query and target
     if req.attack_id:
@@ -308,3 +311,8 @@ def p3_query(req: P3QueryRequest):
         "poison_in_top3": res["audit"].get("retrieved_poison", False),
         "audit": res["audit"],
     }
+
+
+# Include routes both with and without /api prefix
+app.include_router(router)
+app.include_router(router, prefix="/api")
