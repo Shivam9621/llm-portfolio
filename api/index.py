@@ -162,7 +162,10 @@ class P1QueryRequest(BaseModel):
 
 
 class P2JudgeRequest(BaseModel):
-    question_id: str
+    question_id: Optional[str] = "q01"
+    question: Optional[str] = None
+    answer_a: Optional[str] = None
+    answer_b: Optional[str] = None
     swap_order: bool = False
     length_neutral: bool = False
 
@@ -314,14 +317,17 @@ def p2_get_questions():
 
 @router.post("/p2/judge")
 def p2_judge(req: P2JudgeRequest):
-    if req.question_id not in ANSWERS_MAP:
-        raise HTTPException(status_code=404, detail="Question ID not found.")
+    q_id = req.question_id or "q01"
+    pair = ANSWERS_MAP.get(q_id) or list(ANSWERS_MAP.values())[0]
 
-    pair = ANSWERS_MAP[req.question_id]
+    q_text = (req.question or "").strip() or pair["question"]
+    ans_a = (req.answer_a or "").strip() or pair["answer_a"]
+    ans_b = (req.answer_b or "").strip() or pair["answer_b"]
+
     verdict = judge_pair(
-        question=pair["question"],
-        answer_a=pair["answer_a"],
-        answer_b=pair["answer_b"],
+        question=q_text,
+        answer_a=ans_a,
+        answer_b=ans_b,
         swap_order=req.swap_order,
         length_penalty_instruction=req.length_neutral,
     )
@@ -335,20 +341,15 @@ def p3_get_attacks():
 
 @router.post("/p3/query")
 def p3_query(req: P3QueryRequest):
-    # Determine query and target
+    target_atk = None
     if req.attack_id:
         target_atk = next((a for a in ATTACKS_DATA if a["id"] == req.attack_id), None)
-        if not target_atk:
-            raise HTTPException(status_code=404, detail="Attack ID not found.")
-        query_text = target_atk["trigger_query"]
-        target_pattern = target_atk["target_pattern"]
-        ctype = target_atk["condition_type"]
-    elif req.custom_query:
-        query_text = req.custom_query
-        target_pattern = "TIGER-42"
-        ctype = "contains_string"
-    else:
-        raise HTTPException(status_code=400, detail="Must provide attack_id or custom_query.")
+    if not target_atk:
+        target_atk = ATTACKS_DATA[0]
+
+    query_text = (req.custom_query or "").strip() or target_atk["trigger_query"]
+    target_pattern = target_atk.get("target_pattern", "TIGER-42")
+    ctype = target_atk.get("condition_type", "contains_string")
 
     bot = RAGBot(
         layer_spotlighting=req.layer_spotlighting,
