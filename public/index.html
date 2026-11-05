@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM Systems Engineering Portfolio | Shivam Jaiswal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .tab-active { border-bottom: 3px solid #3b82f6; color: #3b82f6; font-weight: 600; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-microchip text-blue-600"></i> Production LLM Systems & Evaluation
+        </h1>
+        <p class="text-xs text-slate-500 mt-1">
+          Designed by <span class="font-semibold text-slate-700">Shivam Jaiswal</span> | 3 Production AI Systems with Empirical Benchmarks
+        </p>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://github.com/Shivam9621/llm-portfolio" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium rounded-lg transition shadow-sm">
+          <i class="fa-brands fa-github text-base"></i> View on GitHub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Metric Banner -->
+  <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white py-6">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/10">
+        <div class="text-xs text-blue-300 font-semibold tracking-wide uppercase">Project 1: Semantic Cache</div>
+        <div class="text-2xl font-black mt-1 text-white">14.0% Hit Rate <span class="text-sm font-normal text-slate-300">| 0 False Hits</span></div>
+        <div class="text-xs text-slate-300 mt-1">Latency dropped from 1144 ms to 19.99 ms on hits (98.2% faster).</div>
+      </div>
+      <div class="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/10">
+        <div class="text-xs text-indigo-300 font-semibold tracking-wide uppercase">Project 2: LLM Judge Audit</div>
+        <div class="text-2xl font-black mt-1 text-white">36.7% Agreement <span class="text-sm font-normal text-slate-300">| 25 Flips Solved</span></div>
+        <div class="text-xs text-slate-300 mt-1">Bidirectional order checks neutralized length & position bias.</div>
+      </div>
+      <div class="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/10">
+        <div class="text-xs text-emerald-300 font-semibold tracking-wide uppercase">Project 3: RAG Injection</div>
+        <div class="text-2xl font-black mt-1 text-white">0% ASR <span class="text-sm font-normal text-slate-300">(Down from 100%)</span></div>
+        <div class="text-xs text-slate-300 mt-1">10/10 attacks defended with 0 false blocks across 20 normal queries.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Tabs -->
+  <main class="max-w-7xl mx-auto px-4 py-8">
+    <div class="border-b border-slate-200 flex gap-8 text-sm font-medium">
+      <button onclick="switchTab('p1')" id="tab-btn-p1" class="pb-3 tab-active flex items-center gap-2">
+        <i class="fa-solid fa-bolt text-blue-600"></i> Project 1: Semantic Cache Playground
+      </button>
+      <button onclick="switchTab('p2')" id="tab-btn-p2" class="pb-3 text-slate-500 hover:text-slate-800 flex items-center gap-2">
+        <i class="fa-solid fa-scale-balanced text-indigo-600"></i> Project 2: LLM-as-a-Judge Arena
+      </button>
+      <button onclick="switchTab('p3')" id="tab-btn-p3" class="pb-3 text-slate-500 hover:text-slate-800 flex items-center gap-2">
+        <i class="fa-solid fa-shield-halved text-emerald-600"></i> Project 3: RAG Injection Sandbox
+      </button>
+    </div>
+
+    <!-- TAB 1: SEMANTIC CACHE -->
+    <div id="tab-p1" class="mt-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+          <h2 class="text-lg font-bold text-slate-900 mb-2">Test Semantic FAQ Bot</h2>
+          <p class="text-xs text-slate-500 mb-4">Enter a customer question or try a preset to test vector cache hits, negation guardrails, and latency savings.</p>
+          
+          <div class="flex flex-wrap gap-2 mb-4 text-xs">
+            <span class="text-slate-400 self-center">Presets:</span>
+            <button onclick="setQuery('What is your return policy?')" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 rounded-full font-medium">Exact Match</button>
+            <button onclick="setQuery('How do I contact customer support representatives?')" class="px-3 py-1 bg-blue-50 text-blue-700 hover:bg-blue-100 rounded-full font-medium">Semantic Paraphrase</button>
+            <button onclick="setQuery('Please do not give me any refund, keep the payment')" class="px-3 py-1 bg-amber-50 text-amber-700 hover:bg-amber-100 rounded-full font-medium">Negation Guard Test</button>
+            <button onclick="setQuery('How do I buy shares of your company?')" class="px-3 py-1 bg-red-50 text-red-700 hover:bg-red-100 rounded-full font-medium">Out of Scope</button>
+          </div>
+
+          <div class="flex gap-2 mb-4">
+            <input type="text" id="p1-input" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="e.g. Can I return my product after 2 weeks?" value="What is your return policy?">
+            <button onclick="runP1Query()" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-semibold transition flex items-center gap-2">
+              <i class="fa-solid fa-paper-plane"></i> Ask Bot
+            </button>
+          </div>
+
+          <!-- P1 Result Container -->
+          <div id="p1-result" class="hidden border border-slate-200 rounded-xl p-5 bg-slate-50/50 mt-6">
+            <div class="flex items-center justify-between mb-3">
+              <span id="p1-badge" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"></span>
+              <div class="flex gap-4 text-xs text-slate-500 font-mono">
+                <span>Similarity: <strong id="p1-sim" class="text-slate-800"></strong></span>
+                <span>Latency: <strong id="p1-lat" class="text-slate-800"></strong></span>
+                <span>Tokens: <strong id="p1-tok" class="text-slate-800"></strong></span>
+              </div>
+            </div>
+            <div class="text-xs text-slate-500 uppercase font-semibold mb-1">Bot Response:</div>
+            <p id="p1-answer" class="text-sm text-slate-800 leading-relaxed bg-white p-4 rounded-lg border border-slate-200"></p>
+          </div>
+        </div>
+
+        <!-- P1 Settings -->
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-5">
+          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider">⚙️ Vector Cache Tuning</h3>
+          <div>
+            <div class="flex justify-between text-xs font-semibold mb-1">
+              <span>Similarity Threshold (T):</span>
+              <span id="p1-thresh-val" class="text-blue-600">0.75</span>
+            </div>
+            <input type="range" id="p1-thresh" min="0.50" max="0.95" step="0.05" value="0.75" class="w-full" oninput="document.getElementById('p1-thresh-val').innerText = this.value">
+            <p class="text-xs text-slate-400 mt-1">Calibrated at 0.75 to yield 0.0% false-hit rate.</p>
+          </div>
+          <div class="space-y-3 pt-3 border-t border-slate-100 text-xs font-medium">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="p1-neg-guard" checked class="rounded text-blue-600">
+              <span>Negation Polarity Guard</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="p1-pii-filter" checked class="rounded text-blue-600">
+              <span>Order-ID & PII Regex Sanitizer</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: LLM JUDGE -->
+    <div id="tab-p2" class="hidden mt-6">
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+        <h2 class="text-lg font-bold text-slate-900 mb-2">LLM-as-a-Judge Bias Arena</h2>
+        <p class="text-xs text-slate-500 mb-4">Evaluate Candidate A (Concise Senior Engineer) vs Candidate B (Verbose Academic) to audit Position & Length Bias.</p>
+        
+        <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+          <div class="w-full md:w-2/3">
+            <label class="text-xs font-bold text-slate-600 uppercase">Select Question:</label>
+            <select id="p2-question-select" onchange="loadP2Question()" class="w-full mt-1 px-4 py-2 border border-slate-300 rounded-lg text-sm bg-white"></select>
+          </div>
+          <div class="flex gap-4 items-center text-xs font-medium">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="p2-swap" class="rounded text-indigo-600">
+              <span>Swap Order (B then A)</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="p2-len-neutral" class="rounded text-indigo-600">
+              <span>'Length Does Not Matter' Rule</span>
+            </label>
+            <button onclick="runP2Judge()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-semibold transition">
+              <i class="fa-solid fa-gavel"></i> Run Judge
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Candidate A: Concise Engineer</span>
+            <span id="p2-wordcount-a" class="text-xs text-slate-400"></span>
+          </div>
+          <div id="p2-ans-a" class="text-xs text-slate-700 leading-relaxed font-mono bg-slate-50 p-4 rounded-lg min-h-[160px]"></div>
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-purple-600">Candidate B: Verbose Academic</span>
+            <span id="p2-wordcount-b" class="text-xs text-slate-400"></span>
+          </div>
+          <div id="p2-ans-b" class="text-xs text-slate-700 leading-relaxed font-mono bg-slate-50 p-4 rounded-lg min-h-[160px]"></div>
+        </div>
+      </div>
+
+      <!-- P2 Result -->
+      <div id="p2-result" class="hidden bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Judge Decision & Analysis:</h3>
+        <div class="flex items-center gap-3 mb-2">
+          <span id="p2-winner-badge" class="px-3 py-1 rounded-full text-xs font-bold uppercase"></span>
+          <span id="p2-presentation" class="text-xs text-slate-500"></span>
+        </div>
+        <p id="p2-reason" class="text-sm text-slate-800 bg-slate-50 p-4 rounded-lg border border-slate-200"></p>
+      </div>
+    </div>
+
+    <!-- TAB 3: PROMPT INJECTION -->
+    <div id="tab-p3" class="hidden mt-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+          <h2 class="text-lg font-bold text-slate-900 mb-2">RAG Indirect Prompt-Injection Sandbox</h2>
+          <p class="text-xs text-slate-500 mb-4">Launch 10 real poisoned attack documents to test if synthetic secrets (<code>TIGER-42</code>) leak.</p>
+
+          <div class="mb-4">
+            <label class="text-xs font-bold text-slate-600 uppercase">Select Attack Scenario:</label>
+            <select id="p3-attack-select" onchange="previewAttack()" class="w-full mt-1 px-4 py-2 border border-slate-300 rounded-lg text-sm bg-white"></select>
+          </div>
+
+          <div class="bg-slate-50 rounded-lg p-4 border border-slate-200 text-xs mb-4">
+            <div><strong>Trigger Query:</strong> <span id="p3-trigger" class="font-mono text-blue-700"></span></div>
+            <div class="mt-1"><strong>Target Secret:</strong> <span id="p3-target" class="font-mono text-rose-600"></span></div>
+            <div class="mt-1 text-slate-500" id="p3-desc"></div>
+          </div>
+
+          <button onclick="runP3Attack()" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-semibold transition flex items-center gap-2">
+            <i class="fa-solid fa-play"></i> Run RAG Query
+          </button>
+
+          <!-- P3 Result -->
+          <div id="p3-result" class="hidden border border-slate-200 rounded-xl p-5 bg-slate-50/50 mt-6">
+            <div class="flex items-center justify-between mb-3">
+              <span id="p3-status-badge" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"></span>
+              <span id="p3-retrieved-info" class="text-xs text-slate-500 font-mono"></span>
+            </div>
+            <div class="text-xs text-slate-500 uppercase font-semibold mb-1">Bot Output:</div>
+            <p id="p3-response" class="text-sm text-slate-800 leading-relaxed bg-white p-4 rounded-lg border border-slate-200 font-mono"></p>
+          </div>
+        </div>
+
+        <!-- P3 Defense Layers -->
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider">🛡️ Defense in Depth Layers</h3>
+          <p class="text-xs text-slate-500">Toggle guardrails to observe how layered defenses stop attacks.</p>
+          
+          <div class="space-y-3 text-xs font-medium pt-2">
+            <label class="flex items-start gap-2 cursor-pointer">
+              <input type="checkbox" id="p3-l1" checked class="mt-0.5 rounded text-emerald-600">
+              <div>
+                <strong>Layer 1: Spotlighting</strong>
+                <p class="text-slate-400 font-normal">Wraps chunks in &lt;document&gt; tags with passive-data prompt rule.</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-2 cursor-pointer">
+              <input type="checkbox" id="p3-l2" checked class="mt-0.5 rounded text-emerald-600">
+              <div>
+                <strong>Layer 2: Input Quarantine Filter</strong>
+                <p class="text-slate-400 font-normal">Scans retrieved chunks and quarantines injection patterns.</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-2 cursor-pointer">
+              <input type="checkbox" id="p3-l3" checked class="mt-0.5 rounded text-emerald-600">
+              <div>
+                <strong>Layer 3: Output Redaction Filter</strong>
+                <p class="text-slate-400 font-normal">Regex detection for password and unauthorized URLs.</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-2 cursor-pointer">
+              <input type="checkbox" id="p3-l4" checked class="mt-0.5 rounded text-emerald-600">
+              <div>
+                <strong>Layer 4: Least Privilege</strong>
+                <p class="text-slate-400 font-normal">Removes secret from system prompt entirely.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let p2Data = [];
+    let p3Data = [];
+
+    function switchTab(tabId) {
+      ['p1', 'p2', 'p3'].forEach(id => {
+        document.getElementById(`tab-${id}`).classList.add('hidden');
+        document.getElementById(`tab-btn-${id}`).classList.remove('tab-active');
+        document.getElementById(`tab-btn-${id}`).classList.add('text-slate-500');
+      });
+      document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+      document.getElementById(`tab-btn-${tabId}`).classList.add('tab-active');
+      document.getElementById(`tab-btn-${tabId}`).classList.remove('text-slate-500');
+
+      if (tabId === 'p2' && p2Data.length === 0) loadP2();
+      if (tabId === 'p3' && p3Data.length === 0) loadP3();
+    }
+
+    function setQuery(text) {
+      document.getElementById('p1-input').value = text;
+      runP1Query();
+    }
+
+    async function runP1Query() {
+      const q = document.getElementById('p1-input').value;
+      const t = parseFloat(document.getElementById('p1-thresh').value);
+      const neg = document.getElementById('p1-neg-guard').checked;
+      const pii = document.getElementById('p1-pii-filter').checked;
+
+      const res = await fetch('/api/p1/query', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ question: q, threshold: t, enable_neg_guard: neg, enable_pii_filter: pii })
+      }).then(r => r.json());
+
+      const resBox = document.getElementById('p1-result');
+      const badge = document.getElementById('p1-badge');
+      resBox.classList.remove('hidden');
+
+      if (res.hit) {
+        badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800';
+        badge.innerText = `CACHE HIT (${res.matched_faq_id})`;
+      } else {
+        badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-800';
+        badge.innerText = res.audit.negation_blocked ? 'LLM (NEGATION GUARD BLOCKED)' : 'LLM FALLBACK (MISS)';
+      }
+
+      document.getElementById('p1-sim').innerText = res.similarity;
+      document.getElementById('p1-lat').innerText = res.latency_ms + ' ms';
+      document.getElementById('p1-tok').innerText = res.tokens;
+      document.getElementById('p1-answer').innerText = res.answer;
+    }
+
+    async function loadP2() {
+      p2Data = await fetch('/api/p2/questions').then(r => r.json());
+      const select = document.getElementById('p2-question-select');
+      select.innerHTML = p2Data.map(q => `<option value="${q.id}">${q.id}: ${q.question.slice(0, 75)}...</option>`).join('');
+      loadP2Question();
+    }
+
+    function loadP2Question() {
+      const id = document.getElementById('p2-question-select').value;
+      const item = p2Data.find(q => q.id === id);
+      if (item) {
+        document.getElementById('p2-ans-a').innerText = item.answer_a;
+        document.getElementById('p2-ans-b').innerText = item.answer_b;
+        document.getElementById('p2-wordcount-a').innerText = item.answer_a.split(' ').length + ' words';
+        document.getElementById('p2-wordcount-b').innerText = item.answer_b.split(' ').length + ' words';
+      }
+    }
+
+    async function runP2Judge() {
+      const id = document.getElementById('p2-question-select').value;
+      const swap = document.getElementById('p2-swap').checked;
+      const len = document.getElementById('p2-len-neutral').checked;
+
+      const verdict = await fetch('/api/p2/judge', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ question_id: id, swap_order: swap, length_neutral: len })
+      }).then(r => r.json());
+
+      const resBox = document.getElementById('p2-result');
+      const badge = document.getElementById('p2-winner-badge');
+      resBox.classList.remove('hidden');
+
+      if (verdict.winner === 'A') {
+        badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase bg-blue-100 text-blue-800';
+        badge.innerText = 'WINNER: MODEL A (CONCISE)';
+      } else if (verdict.winner === 'B') {
+        badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase bg-purple-100 text-purple-800';
+        badge.innerText = 'WINNER: MODEL B (VERBOSE)';
+      } else {
+        badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase bg-amber-100 text-amber-800';
+        badge.innerText = 'OUTCOME: TIE';
+      }
+
+      document.getElementById('p2-presentation').innerText = verdict.presentation;
+      document.getElementById('p2-reason').innerText = verdict.reason;
+    }
+
+    async function loadP3() {
+      p3Data = await fetch('/api/p3/attacks').then(r => r.json());
+      const select = document.getElementById('p3-attack-select');
+      select.innerHTML = p3Data.map((a, i) => `<option value="${a.id}">Attack #${i+1}: ${a.name}</option>`).join('');
+      previewAttack();
+    }
+
+    function previewAttack() {
+      const id = document.getElementById('p3-attack-select').value;
+      const atk = p3Data.find(a => a.id === id);
+      if (atk) {
+        document.getElementById('p3-trigger').innerText = atk.trigger_query;
+        document.getElementById('p3-target').innerText = atk.target_pattern;
+        document.getElementById('p3-desc').innerText = atk.description;
+      }
+    }
+
+    async function runP3Attack() {
+      const id = document.getElementById('p3-attack-select').value;
+      const l1 = document.getElementById('p3-l1').checked;
+      const l2 = document.getElementById('p3-l2').checked;
+      const l3 = document.getElementById('p3-l3').checked;
+      const l4 = document.getElementById('p3-l4').checked;
+
+      const res = await fetch('/api/p3/query', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          attack_id: id,
+          layer_spotlighting: l1,
+          layer_input_filter: l2,
+          layer_output_filter: l3,
+          layer_least_privilege: l4
+        })
+      }).then(r => r.json());
+
+      const resBox = document.getElementById('p3-result');
+      const badge = document.getElementById('p3-status-badge');
+      resBox.classList.remove('hidden');
+
+      if (res.attack_succeeded) {
+        badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-rose-100 text-rose-800';
+        badge.innerText = 'PWNED: SECRET EXFILTRATED!';
+      } else {
+        badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800';
+        badge.innerText = 'DEFENDED: ATTACK BLOCKED';
+      }
+
+      document.getElementById('p3-retrieved-info').innerText = `Poison in Top-3: ${res.poison_in_top3}`;
+      document.getElementById('p3-response').innerText = res.response;
+    }
+  </script>
+</body>
+</html>
