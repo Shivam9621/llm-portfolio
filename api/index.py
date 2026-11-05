@@ -45,16 +45,17 @@ app.add_middleware(
 )
 
 
+from urllib.parse import parse_qs
+
+
 @app.middleware("http")
 async def fix_vercel_path(request: Request, call_next):
     """Normalize Vercel serverless request path if rewritten."""
-    current_path = request.scope.get("path", "")
-    if current_path in ("/api/index.py", "/api/index", "/api", "api/index.py"):
-        orig = request.headers.get("x-matched-path") or request.headers.get("x-forwarded-uri")
-        if orig:
-            # Strip query string if present
-            orig_clean = orig.split("?")[0]
-            request.scope["path"] = orig_clean
+    query_str = request.scope.get("query_string", b"").decode("utf-8", errors="ignore")
+    params = parse_qs(query_str)
+    if "__path" in params and params["__path"]:
+        subpath = params["__path"][0].lstrip("/")
+        request.scope["path"] = f"/{subpath}"
     return await call_next(request)
 
 # -----------------------------------------------------------------------------
@@ -346,12 +347,6 @@ app.include_router(router, prefix="/api")
 
 @app.api_route("/{full_path:path}", methods=["GET", "POST"])
 def catch_all(request: Request, full_path: str):
-    # If root or index.html requested via catchall, serve UI
     if full_path in ("", "index.html", "public/index.html"):
         return serve_index()
-    # Debug header inspection
-    return {
-        "detail": f"Endpoint '{full_path}' not found.",
-        "headers": dict(request.headers),
-        "scope": {k: str(v) for k, v in request.scope.items() if k in ("path", "raw_path", "root_path", "query_string")},
-    }
+    raise HTTPException(status_code=404, detail=f"Endpoint '{full_path}' not found.")
