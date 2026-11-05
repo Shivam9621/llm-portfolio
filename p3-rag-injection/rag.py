@@ -110,6 +110,11 @@ class RAGBot:
         """Load clean and poisoned documents and index their chunks."""
         precomputed_emb = os.path.join(SCRIPT_DIR, "chunk_embeddings.npy")
         precomputed_chunks = os.path.join(SCRIPT_DIR, "chunks.json")
+        api_data_emb = os.path.join(REPO_ROOT, "api", "data", "chunk_embeddings.npy")
+        api_data_chunks = os.path.join(REPO_ROOT, "api", "data", "chunks.json")
+
+        if os.path.exists(api_data_emb) and os.path.exists(api_data_chunks):
+            precomputed_emb, precomputed_chunks = api_data_emb, api_data_chunks
 
         if os.path.exists(precomputed_emb) and os.path.exists(precomputed_chunks):
             self.chunk_embeddings = np.load(precomputed_emb)

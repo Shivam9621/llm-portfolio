@@ -23,6 +23,9 @@ import llm
 
 def load_rubric(rubric_path: Optional[str] = None) -> str:
     path = rubric_path or os.path.join(SCRIPT_DIR, "rubric.md")
+    api_rubric = os.path.join(REPO_ROOT, "api", "data", "rubric.md")
+    if not os.path.exists(path) and os.path.exists(api_rubric):
+        path = api_rubric
     if os.path.exists(path):
         with open(path, "r", encoding="utf-8") as f:
             return f.read()

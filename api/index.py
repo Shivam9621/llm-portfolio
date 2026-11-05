@@ -60,13 +60,24 @@ async def fix_vercel_path(request: Request, call_next):
     return await call_next(request)
 
 # -----------------------------------------------------------------------------
-# DATA LOADERS & CACHED ASSETS
+# DATA LOADERS & CACHED ASSETS (Checks api/data/ first for Vercel bundling)
 # -----------------------------------------------------------------------------
-FAQS_PATH = os.path.join(ROOT_DIR, "p1-semantic-cache", "faqs.json")
-FAQ_EMB_PATH = os.path.join(ROOT_DIR, "p1-semantic-cache", "faq_embeddings.npy")
-QUESTIONS_PATH = os.path.join(ROOT_DIR, "p2-llm-judge", "questions.json")
-ANSWERS_PATH = os.path.join(ROOT_DIR, "p2-llm-judge", "answers.jsonl")
-ATTACKS_PATH = os.path.join(ROOT_DIR, "p3-rag-injection", "attacks.json")
+def get_asset_path(filename: str, fallback_subpath: str) -> str:
+    bundled = os.path.join(API_DIR, "data", filename)
+    if os.path.exists(bundled):
+        return bundled
+    fallback = os.path.join(ROOT_DIR, fallback_subpath)
+    if os.path.exists(fallback):
+        return fallback
+    return bundled
+
+FAQS_PATH = get_asset_path("faqs.json", "p1-semantic-cache/faqs.json")
+FAQ_EMB_PATH = get_asset_path("faq_embeddings.npy", "p1-semantic-cache/faq_embeddings.npy")
+QUESTIONS_PATH = get_asset_path("questions.json", "p2-llm-judge/questions.json")
+ANSWERS_PATH = get_asset_path("answers.jsonl", "p2-llm-judge/answers.jsonl")
+ATTACKS_PATH = get_asset_path("attacks.json", "p3-rag-injection/attacks.json")
+CACHED_QVEC_PATH = get_asset_path("cached_query_vectors.npy", "p1-semantic-cache/cached_query_vectors.npy")
+CACHED_QLOOKUP_PATH = get_asset_path("cached_queries.json", "p1-semantic-cache/cached_queries.json")
 
 # Load FAQs
 with open(FAQS_PATH, "r", encoding="utf-8") as f:
@@ -77,10 +88,6 @@ if os.path.exists(FAQ_EMB_PATH):
     FAQ_EMBEDDINGS = np.load(FAQ_EMB_PATH)
 else:
     FAQ_EMBEDDINGS = None
-
-# Load Precomputed Query Vectors for fast Serverless Vector Matching
-CACHED_QVEC_PATH = os.path.join(ROOT_DIR, "p1-semantic-cache", "cached_query_vectors.npy")
-CACHED_QLOOKUP_PATH = os.path.join(ROOT_DIR, "p1-semantic-cache", "cached_queries.json")
 
 if os.path.exists(CACHED_QVEC_PATH) and os.path.exists(CACHED_QLOOKUP_PATH):
     CACHED_QVECS = np.load(CACHED_QVEC_PATH)
