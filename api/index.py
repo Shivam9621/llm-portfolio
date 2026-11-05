@@ -316,3 +316,12 @@ def p3_query(req: P3QueryRequest):
 # Include routes both with and without /api prefix
 app.include_router(router)
 app.include_router(router, prefix="/api")
+
+
+@app.api_route("/{full_path:path}", methods=["GET", "POST"])
+def catch_all(full_path: str):
+    return {
+        "status": "debug_catchall",
+        "caught_path": full_path,
+        "available_routes": [r.path for r in app.routes if hasattr(r, "path")],
+    }
