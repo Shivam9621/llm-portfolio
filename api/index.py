@@ -13,8 +13,9 @@ import json
 import time
 import numpy as np
 from typing import Any, Dict, List, Optional
-from fastapi import FastAPI, HTTPException, APIRouter
+from fastapi import FastAPI, HTTPException, APIRouter, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse, HTMLResponse
 from pydantic import BaseModel
 
 # Add project root to sys.path
@@ -42,6 +43,19 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.middleware("http")
+async def fix_vercel_path(request: Request, call_next):
+    """Normalize Vercel serverless request path if rewritten."""
+    current_path = request.scope.get("path", "")
+    if current_path in ("/api/index.py", "/api/index", "/api", "api/index.py"):
+        orig = request.headers.get("x-matched-path") or request.headers.get("x-forwarded-uri")
+        if orig:
+            # Strip query string if present
+            orig_clean = orig.split("?")[0]
+            request.scope["path"] = orig_clean
+    return await call_next(request)
 
 # -----------------------------------------------------------------------------
 # DATA LOADERS & CACHED ASSETS
@@ -313,15 +327,26 @@ def p3_query(req: P3QueryRequest):
     }
 
 
+# Serve Dashboard Frontend
+INDEX_HTML = os.path.join(ROOT_DIR, "public", "index.html")
+
+
+@app.get("/")
+@router.get("/")
+def serve_index():
+    if os.path.exists(INDEX_HTML):
+        return FileResponse(INDEX_HTML, media_type="text/html")
+    return HTMLResponse("<h1>LLM Engineering Portfolio</h1>")
+
+
 # Include routes both with and without /api prefix
 app.include_router(router)
 app.include_router(router, prefix="/api")
 
 
 @app.api_route("/{full_path:path}", methods=["GET", "POST"])
-def catch_all(full_path: str):
-    return {
-        "status": "debug_catchall",
-        "caught_path": full_path,
-        "available_routes": [r.path for r in app.routes if hasattr(r, "path")],
-    }
+def catch_all(request: Request, full_path: str):
+    # If root or index.html requested via catchall, serve UI
+    if full_path in ("", "index.html", "public/index.html"):
+        return serve_index()
+    raise HTTPException(status_code=404, detail=f"Endpoint '{full_path}' not found.")
